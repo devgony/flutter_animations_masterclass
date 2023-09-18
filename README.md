@@ -1,0 +1,13 @@
+> # flutter_animations_masterclass
+
+# 1 IMPLICIT ANIMATIONS
+
+## 1.0 Project Setup
+
+```
+flutter create flutter_animations_masterclass
+cd flutter_animations_masterclass
+mkdir -p lib/screens
+touch lib/screens/menu_screen.dart
+touch lib/screens/implicit_animations_screen.dart
+```
