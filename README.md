@@ -15,3 +15,7 @@ touch lib/screens/implicit_animations_screen.dart
 ## 1.1 Implicitly Animated Widgets
 
 - [Implicit Animations](https://docs.flutter.dev/ui/widgets/animation)
+
+## 1.2 AnimatedContainer
+
+- it covers most of the animation properties
