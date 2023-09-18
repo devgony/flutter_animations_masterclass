@@ -11,3 +11,7 @@ mkdir -p lib/screens
 touch lib/screens/menu_screen.dart
 touch lib/screens/implicit_animations_screen.dart
 ```
+
+## 1.1 Implicitly Animated Widgets
+
+- [Implicit Animations](https://docs.flutter.dev/ui/widgets/animation)
