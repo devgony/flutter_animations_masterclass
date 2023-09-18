@@ -25,3 +25,26 @@ touch lib/screens/implicit_animations_screen.dart
 - [Curves class](https://api.flutter.dev/flutter/animation/Curves-class.html) controlls the acceleration of the animation
 - default: [linear](https://api.flutter.dev/flutter/animation/Curves/linear-constant.html)
 - recommanded: [elasticOut](https://api.flutter.dev/flutter/animation/Curves/elasticOut-constant.html)
+
+## 1.4 TweenAnimationBuilder
+
+- still implicit but when their is not suit option in implicit widgets
+
+```dart
+// implicit_animations_screen.dart
+TweenAnimationBuilder(
+    tween: ColorTween(
+    begin: Colors.yellow,
+    end: Colors.red,
+    ),
+    curve: Curves.bounceInOut,
+    duration: const Duration(seconds: 5),
+    builder: (context, value, child) {
+    return Image.network(
+        "https://upload.wikimedia.org/wikipedia/commons/4/4f/Dash%2C_the_mascot_of_the_Dart_programming_language.png",
+        color: value,
+        colorBlendMode: BlendMode.colorBurn,
+    );
+    },
+),
+```
