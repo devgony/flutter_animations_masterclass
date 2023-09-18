@@ -48,3 +48,10 @@ TweenAnimationBuilder(
     },
 ),
 ```
+
+# 2 EXPLICIT ANIMATIONS
+
+## 2.0 Implicit vs Explicit
+
+- https://docs.flutter.dev/ui/animations  
+  ![animation-decision-tree](/md_images/animation-decision-tree.png)
