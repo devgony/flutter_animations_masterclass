@@ -19,3 +19,9 @@ touch lib/screens/implicit_animations_screen.dart
 ## 1.2 AnimatedContainer
 
 - it covers most of the animation properties
+
+## 1.3 Curves
+
+- [Curves class](https://api.flutter.dev/flutter/animation/Curves-class.html) controlls the acceleration of the animation
+- default: [linear](https://api.flutter.dev/flutter/animation/Curves/linear-constant.html)
+- recommanded: [elasticOut](https://api.flutter.dev/flutter/animation/Curves/elasticOut-constant.html)
