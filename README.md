@@ -76,3 +76,30 @@ void initState() {
 - SingleTickerProviderStateMixin
   - Provides a `single Ticker` that is configured to `only tick while the current tree is enabled`
   - if more than two animationControllers, use TickerProviderStateMixin
+
+## 2.2 Animation Values
+
+```dart
+void _play() {
+    _animationController.forward();
+}
+
+void _pause() {
+    _animationController.stop();
+}
+
+void _rewind() {
+    _animationController.reverse();
+}
+...
+void initState() {
+  super.initState();
+  Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    print(_animationController.value); // no build issue => print just for now
+  });
+}
+```
+
+1. animationController goes from 0 to 1
+2. it has forward, stop, reverse
+3. it does not build again
