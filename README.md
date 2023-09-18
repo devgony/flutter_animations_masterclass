@@ -103,3 +103,23 @@ void initState() {
 1. animationController goes from 0 to 1
 2. it has forward, stop, reverse
 3. it does not build again
+
+## 2.3 AnimatedBuilder
+
+```dart
+AnimatedBuilder(
+    animation: _animationController,
+    builder: (context, child) {
+        return Opacity(
+            opacity: _animationController.value,
+            child: Container(
+            color: Colors.amber,
+            width: 400,
+            height: 400,
+            ),
+        );
+    },
+),
+```
+
+- build was called once => only AnimatedBuilder is called again
