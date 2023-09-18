@@ -55,3 +55,24 @@ TweenAnimationBuilder(
 
 - https://docs.flutter.dev/ui/animations  
   ![animation-decision-tree](/md_images/animation-decision-tree.png)
+
+## 2.1 AnimationController
+
+```sh
+touch lib/screens/explicit_animations_screen.dart
+```
+
+- Tiker
+  - calls its callback once per animation frame
+  - it still runs `even after leaving widget tree`
+
+```dart
+void initState() {
+    super.initState();
+    Ticker((elapsed) => print(elapsed)).start();
+}
+```
+
+- SingleTickerProviderStateMixin
+  - Provides a `single Ticker` that is configured to `only tick while the current tree is enabled`
+  - if more than two animationControllers, use TickerProviderStateMixin
