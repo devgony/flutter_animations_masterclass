@@ -190,3 +190,20 @@ SlideTransition(
   ),
 )
 ```
+
+## 2.6 CurvedAnimation
+
+- inject CurvedAnimation instead of AnimationController
+
+```dart
+late final CurvedAnimation _curve = CurvedAnimation(
+  parent: _animationController,
+  curve: Curves.elasticOut,
+  reverseCurve: Curves.bounceIn,
+);
+..
+late final Animation<double> _rotation = Tween(
+  begin: 0.0,
+  end: 0.5,
+).animate(_curve);
+```
