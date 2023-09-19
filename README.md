@@ -137,3 +137,56 @@ AnimatedBuilder(
 ```
 
 - instead of using naive value, inject controller to ColorTween
+
+## 2.5 Explicit Widgets
+
+- using AnimatedBuilder all the time is verbose
+  - wrap with explicit widget
+- explicit widget naming rule: ~Transition eg) `SlideTransition`
+  - [Explicit Animations](https://docs.flutter.dev/ui/widgets/animation)
+- DecoratedBoxTransition + DecorationTween: define start and begin of multiple properties
+
+```dart
+late final Animation<Decoration> _decoration = DecorationTween(
+  begin: BoxDecoration(
+    color: Colors.amber,
+    borderRadius: BorderRadius.circular(20),
+  ),
+  end: BoxDecoration(
+    color: Colors.red,
+    borderRadius: BorderRadius.circular(120),
+  ),
+).animate(_animationController);
+
+late final Animation<double> _rotation = Tween(
+  begin: 0.0,
+  end: 2.0,
+).animate(_animationController);
+
+late final Animation<double> _scale = Tween(
+  begin: 1.0,
+  end: 1.1,
+).animate(_animationController);
+
+late final Animation<Offset> _position = Tween(
+  begin: Offset.zero,
+  end: const Offset(0, -0.2),
+).animate(_animationController);
+..
+SlideTransition(
+  position: _position,
+  child: ScaleTransition(
+    scale: _scale,
+    child: RotationTransition(
+      turns: _rotation,
+      child: DecoratedBoxTransition(
+        decoration: _decoration,
+        child: const SizedBox(
+          height: 400,
+          width: 400,
+        ),
+      ),
+    ),
+  ),
+)
+```
