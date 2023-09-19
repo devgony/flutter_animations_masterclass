@@ -207,3 +207,34 @@ late final Animation<double> _rotation = Tween(
   end: 0.5,
 ).animate(_curve);
 ```
+
+## 2.7 ValueNotifier
+
+- holds value to render only specific ValueListenableBuilder
+
+```dart
+late final AnimationController _animationController = AnimationController(
+  vsync: this,
+  duration: const Duration(seconds: 2),
+  reverseDuration: const Duration(seconds: 1),
+)..addListener(() {
+  _range.value = _animationController.value; // hold contorller.value to ValueNotifier
+});
+..
+final ValueNotifier<double> _range = ValueNotifier(0.0);
+
+void _onChanged(double value) {
+  _range.value = 0; // why does it initialize ValueNotifier?
+  _animationController.value = value; // _animationController.animateTo(value) sets value with animation
+}
+..
+ValueListenableBuilder(
+  valueListenable: _range,
+  builder: (context, value, child) {
+    return Slider(
+      value: value,
+      onChanged: _onChanged,
+    );
+  },
+)
+```
