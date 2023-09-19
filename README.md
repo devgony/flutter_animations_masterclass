@@ -123,3 +123,17 @@ AnimatedBuilder(
 ```
 
 - build was called once => only AnimatedBuilder is called again
+
+## 2.4 ColorTween
+
+```dart
+late final Animation<Color?> _color =
+     ColorTween(begin: Colors.amber, end: Colors.red)
+         .animate(_animationController);
+..
+AnimatedBuilder(
+  animation: _color,
+..
+```
+
+- instead of using naive value, inject controller to ColorTween
