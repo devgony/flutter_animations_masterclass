@@ -278,3 +278,47 @@ void _toggleLooping() {
   });
 }
 ```
+
+## 3.0 CustomPainter
+
+- CustomPainter should override `paint`, `shouldRepaint`
+
+- Draw canvas
+
+```dart
+// touch lib/screens/apple_watch_screen.dart
+CustomPaint(
+  painter: AppleWatchPainter(),
+  size: const Size(400, 400),
+),
+```
+
+- Rect
+
+```dart
+final rect = Rect.fromLTWH(
+  0,
+  0,
+  size.width,
+  size.height,
+);
+
+final paint = Paint()..color = Colors.blue;
+
+canvas.drawRect(rect, paint);
+```
+
+- Circle
+
+```dart
+final circlePaint = Paint()
+  ..color = Colors.red
+  ..style = PaintingStyle.stroke
+  ..strokeWidth = 20;
+
+canvas.drawCircle(
+  Offset(size.width / 2, size.width / 2),
+  size.width / 2,
+  circlePaint,
+);
+```
