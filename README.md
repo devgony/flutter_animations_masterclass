@@ -238,3 +238,43 @@ ValueListenableBuilder(
   },
 )
 ```
+
+## 2.8 AnimationStatus
+
+- AnimationStatus serves dismissed, forward, reverse, completed
+
+```dart
+// loop example by AnimationStatus
+late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 2),
+    reverseDuration: const Duration(seconds: 1),
+  )
+    ..addListener(() {
+      _range.value = _animationController.value;
+    })
+    ..addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _animationController.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _animationController.forward();
+      }
+    });
+```
+
+- shorten way to loop
+
+```dart
+bool _looping = false;
+
+void _toggleLooping() {
+  if (_looping) {
+    _animationController.stop();
+  } else {
+    _animationController.repeat(reverse: true);
+  }
+  setState(() {
+    _looping = !_looping;
+  });
+}
+```
