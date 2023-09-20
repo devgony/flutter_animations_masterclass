@@ -10,41 +10,79 @@ class AppleWatchScreen extends StatefulWidget {
 }
 
 class _AppleWatchScreenState extends State<AppleWatchScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController = AnimationController(
-    vsync: this,
-    duration: const Duration(seconds: 2),
-    // lowerBound: 0.005, // 0.. degree
-    // upperBound: 2.0, // 360 degree
-  )..forward(); // fire forward at first render with _curve defined below
+    with TickerProviderStateMixin {
+  double _randomEnd() => Random().nextDouble() * 2.0;
 
-  late final CurvedAnimation _curve = CurvedAnimation(
-    parent: _animationController,
-    curve: Curves.bounceOut,
-  );
+  Map<String, dynamic> getAnimationProps() {
+    final AnimationController animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..forward();
 
-  late Animation<double> _progress = Tween(
-    begin: 0.005,
-    end: 1.5,
-  ).animate(_curve);
+    final CurvedAnimation curve = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.bounceOut,
+    );
+
+    Animation<double> progress = Tween(
+      begin: 0.005,
+      end: _randomEnd(),
+    ).animate(curve);
+
+    return {
+      "animationController": animationController,
+      "curve": curve,
+      "progress": progress,
+    };
+  }
+
+  late final prop1 = getAnimationProps();
+  late final prop2 = getAnimationProps();
+  late final prop3 = getAnimationProps();
+
+  late final AnimationController _animationController1 =
+      prop1["animationController"];
+  late final AnimationController _animationController2 =
+      prop2["animationController"];
+  late final AnimationController _animationController3 =
+      prop3["animationController"];
+
+  late final CurvedAnimation _curve1 = prop1["curve"];
+  late final CurvedAnimation _curve2 = prop2["curve"];
+  late final CurvedAnimation _curve3 = prop3["curve"];
+
+  late Animation<double> _progress1 = prop1["progress"];
+  late Animation<double> _progress2 = prop2["progress"];
+  late Animation<double> _progress3 = prop3["progress"];
 
   void _animateValues() {
     // forward again onPressed
-    final newBegin = _progress.value;
-    final random = Random();
-    final newEnd = random.nextDouble() * 2.0;
     setState(() {
-      _progress = Tween(
-        begin: newBegin,
-        end: newEnd,
-      ).animate(_curve);
+      _progress1 =
+          Tween(begin: _progress1.value, end: _randomEnd()).animate(_curve1);
+
+      _progress2 =
+          Tween(begin: _progress2.value, end: _randomEnd()).animate(_curve2);
+
+      _progress3 =
+          Tween(begin: _progress3.value, end: _randomEnd()).animate(_curve3);
     });
-    _animationController.forward(from: 0);
+    _animationController1.forward(from: 0);
+    _animationController2.forward(from: 0);
+    _animationController3.forward(from: 0);
   }
+
+  late final Listenable _listenable = Listenable.merge([
+    _animationController1,
+    _animationController2,
+    _animationController3,
+  ]);
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController1.dispose();
+    _animationController2.dispose();
+    _animationController3.dispose();
     super.dispose();
   }
 
@@ -59,11 +97,13 @@ class _AppleWatchScreenState extends State<AppleWatchScreen>
       ),
       body: Center(
         child: AnimatedBuilder(
-          animation: _progress,
+          animation: _listenable,
           builder: (context, child) {
             return CustomPaint(
               painter: AppleWatchPainter(
-                progress: _progress.value,
+                progress1: _progress1.value,
+                progress2: _progress2.value,
+                progress3: _progress3.value,
               ),
               size: const Size(400, 400),
             );
@@ -79,10 +119,14 @@ class _AppleWatchScreenState extends State<AppleWatchScreen>
 }
 
 class AppleWatchPainter extends CustomPainter {
-  final double progress;
+  final double progress1;
+  final double progress2;
+  final double progress3;
 
   AppleWatchPainter({
-    required this.progress,
+    required this.progress1,
+    required this.progress2,
+    required this.progress3,
   });
 
   @override
@@ -150,7 +194,7 @@ class AppleWatchPainter extends CustomPainter {
     canvas.drawArc(
       redArcRect,
       startingAngle,
-      progress * pi, // degree from startingAngle
+      progress1 * pi, // degree from startingAngle
       false,
       redArcPaint,
     );
@@ -171,7 +215,7 @@ class AppleWatchPainter extends CustomPainter {
     canvas.drawArc(
       greenArcRect,
       startingAngle,
-      progress * pi,
+      progress2 * pi,
       false,
       greenArcPaint,
     );
@@ -192,7 +236,7 @@ class AppleWatchPainter extends CustomPainter {
     canvas.drawArc(
       blueArcRect,
       startingAngle,
-      progress * pi,
+      progress3 * pi,
       false,
       blueArcPaint,
     );
@@ -200,6 +244,8 @@ class AppleWatchPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant AppleWatchPainter oldDelegate) {
-    return oldDelegate.progress != progress;
+    return oldDelegate.progress1 != progress1 ||
+        oldDelegate.progress2 != progress2 ||
+        oldDelegate.progress3 != progress3;
   }
 }

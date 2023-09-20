@@ -471,3 +471,10 @@ child: AnimatedBuilder(
   painter: AppleWatchPainter(
     progress: _progress.value,
 ```
+
+## 3.4 Code Challenge
+
+1. end of first Tween should be random
+2. onPress => different Tween for each Arc
+
+Challenge: https://imgur.com/a/flFwHL5
