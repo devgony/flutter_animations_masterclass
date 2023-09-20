@@ -421,3 +421,53 @@ bool shouldRepaint(covariant AppleWatchPainter oldDelegate) {
   return oldDelegate.progress != progress;
 }
 ```
+
+## 3.3 Random()
+
+- impl custom CurvedAnimation
+- don't forget to dispose
+
+```dart
+late final AnimationController _animationController = AnimationController(
+  vsync: this,
+  duration: const Duration(seconds: 2),
+  // lowerBound: 0.005, // 0.. degree
+  // upperBound: 2.0, // 360 degree
+)..forward(); // fire forward at first render with _curve defined below
+
+late final CurvedAnimation _curve = CurvedAnimation(
+  parent: _animationController,
+  curve: Curves.bounceOut,
+);
+
+late Animation<double> _progress = Tween(
+  begin: 0.005,
+  end: 1.5,
+).animate(_curve);
+
+void _animateValues() {
+  // forward again onPressed
+  final newBegin = _progress.value;
+  final random = Random();
+  final newEnd = random.nextDouble() * 2.0;
+  setState(() {
+    _progress = Tween(
+      begin: newBegin,
+      end: newEnd,
+    ).animate(_curve);
+  });
+  _animationController.forward(from: 0);
+}
+
+@override
+void dispose() {
+  _animationController.dispose();
+  super.dispose();
+}
+..
+child: AnimatedBuilder(
+  animation: _progress,
+  ..
+  painter: AppleWatchPainter(
+    progress: _progress.value,
+```
