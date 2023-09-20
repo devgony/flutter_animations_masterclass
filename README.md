@@ -360,7 +360,7 @@ final redArcRect = Rect.fromCircle(
 final redArcPaint = Paint()
   ..color = Colors.red.shade400
   ..style = PaintingStyle.stroke
-  ..strokeCap = StrokeCap.round
+  ..strokeCap = StrokeCap.round // default: butt (noCaps)
   ..strokeWidth = 25;
 
 canvas.drawArc(
@@ -370,4 +370,54 @@ canvas.drawArc(
   false,       // draw radius
   redArcPaint,
 );
+```
+
+## 3.2 shouldRepaint
+
+- impl animationController
+
+```dart
+late final AnimationController _animationController = AnimationController(
+  vsync: this,
+  duration: const Duration(seconds: 2),
+  lowerBound: 0.005, // 0.. degree
+  upperBound: 2.0, // 360 degree
+);
+```
+
+- render by AnimatedBuilder
+
+```dart
+child: AnimatedBuilder(
+  animation: _animationController,
+  builder: (context, child) {
+    return CustomPaint(
+      painter: AppleWatchPainter(
+        progress: _animationController.value,
+      ),
+      size: const Size(400, 400),
+    );
+  },
+),
+..
+class AppleWatchPainter extends CustomPainter {
+  final double progress;
+  ..
+  const startingAngle = -0.5 * pi; // -90 degree (cf. +2.0 = 360 degree)
+  ..
+  canvas.drawArc(
+    redArcRect,
+    startingAngle,
+    progress * pi, // degree from startingAngle
+    false,
+    redArcPaint,
+  );
+```
+
+- only when `shouldRepaint` returns true, it rerenders
+
+```dart
+bool shouldRepaint(covariant AppleWatchPainter oldDelegate) {
+  return oldDelegate.progress != progress;
+}
 ```
