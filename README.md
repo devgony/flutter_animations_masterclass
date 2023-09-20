@@ -279,6 +279,8 @@ void _toggleLooping() {
 }
 ```
 
+# 3 APPLE WATCH PROJECT
+
 ## 3.0 CustomPainter
 
 - CustomPainter should override `paint`, `shouldRepaint`
@@ -320,5 +322,52 @@ canvas.drawCircle(
   Offset(size.width / 2, size.width / 2),
   size.width / 2,
   circlePaint,
+);
+```
+
+## 3.1 drawArc
+
+### Circle
+
+- storke: lines around circle
+- fill: fill whole circle
+
+```dart
+final redCirclePaint = Paint()
+  ..color = Colors.red.shade400.withOpacity(0.3)
+  ..style = PaintingStyle.stroke
+  ..strokeWidth = 25;
+
+final redCircleRadius = (size.width / 2) * 0.9;
+
+canvas.drawCircle(
+  center, // offset
+  redCircleRadius,
+  redCirclePaint,
+);
+```
+
+### Arch
+
+- define rect as canvas of arch
+
+```dart
+final redArcRect = Rect.fromCircle(
+  center: center,
+  radius: redCircleRadius,
+);
+
+final redArcPaint = Paint()
+  ..color = Colors.red.shade400
+  ..style = PaintingStyle.stroke
+  ..strokeCap = StrokeCap.round
+  ..strokeWidth = 25;
+
+canvas.drawArc(
+  redArcRect,  // canvas rect
+  -0.5 * pi,   // startAngle
+  1.5 * pi,    // sweep(end)Angle
+  false,       // draw radius
+  redArcPaint,
 );
 ```
