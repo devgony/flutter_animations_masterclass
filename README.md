@@ -478,3 +478,28 @@ child: AnimatedBuilder(
 2. onPress => different Tween for each Arc
 
 Challenge: https://imgur.com/a/flFwHL5
+
+# 4 SWIPING CARDS PROJECT
+
+## 4.0 Swiping Gesture
+
+- `_onHorizontalDragUpdate`
+- `_onHorizontalDragEnd`
+
+```sh
+touch lib/screens/swiping_cards_screen.dart
+```
+
+- import images
+
+```
+mkdir -p assets/covers
+# download 5 images
+```
+
+```yaml
+# pubspec.yaml
+assets:
+  - assets/
+  - assets/covers/
+```
