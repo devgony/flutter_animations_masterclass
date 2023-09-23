@@ -503,3 +503,14 @@ assets:
   - assets/
   - assets/covers/
 ```
+
+## 4.1 Bounds
+
+```dart
+void _onHorizontalDragEnd(DragEndDetails details) {
+  _animationController.animateTo(
+    0,
+    curve: Curves.bounceOut,
+  );
+}
+```
