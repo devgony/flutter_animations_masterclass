@@ -506,6 +506,18 @@ assets:
 
 ## 4.1 Bounds
 
+- value sets initial state of controller
+
+```dart
+late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 2),
+    lowerBound: size.width * -1,
+    upperBound: size.width,
+    value: 0.0, // init: middle of lower and upper
+  );
+```
+
 ```dart
 void _onHorizontalDragEnd(DragEndDetails details) {
   _animationController.animateTo(
@@ -513,4 +525,26 @@ void _onHorizontalDragEnd(DragEndDetails details) {
     curve: Curves.bounceOut,
   );
 }
+```
+
+## 4.2 Tween Transform
+
+- transform interpolates controller.value to tween
+
+```
+-250    ..    0    175    250
+ 250    ..    0    11.2   15
+```
+
+```dart
+late final Tween<double> _rotation = Tween(
+  begin: -15,
+  end: 15,
+);
+..
+final angle = _rotation.transform(
+  (_position.value + size.width / 2) / size.width,
+) *
+pi /
+180
 ```
