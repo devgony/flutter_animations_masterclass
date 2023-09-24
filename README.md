@@ -548,3 +548,26 @@ final angle = _rotation.transform(
 pi /
 180
 ```
+
+## 4.3 Dismiss Card
+
+- set bound to hide card out of screen
+
+```dart
+void _onHorizontalDragEnd(DragEndDetails details) {
+    final bound = size.width - 200;
+    final dropZone = size.width + 100;
+    if (_position.value.abs() >= bound) {
+      if (_position.value.isNegative) {
+        _position.animateTo((dropZone) * -1);
+      } else {
+        _position.animateTo(dropZone);
+      }
+    } else {
+      _position.animateTo(
+        0,
+        curve: Curves.easeOut,
+      );
+    }
+  }
+```
