@@ -571,3 +571,17 @@ void _onHorizontalDragEnd(DragEndDetails details) {
     }
   }
 ```
+
+## 4.4 Background Card
+
+- unshiff another card to stack
+- add scale animation
+
+```dart
+late final Tween<double> _scale = Tween(
+  begin: 0.8,
+  end: 1,
+);
+..
+final scale = _scale.transform(_position.value.abs() / size.width);
+```
