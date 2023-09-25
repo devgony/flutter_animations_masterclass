@@ -671,3 +671,20 @@ ValueListenableBuilder(
       scale: scale,
       ..
 ```
+
+## 5.3 Hero
+
+```
+touch lib/screens/music_player_detail_screen.dart
+```
+
+```dart
+// music_player_screen.dart
+..
+return GestureDetector(
+  onTap: () => _onTap(index),
+  child: Hero(
+    tag: "${index + 1}",
+    child: Transform.scale(
+    ..
+```
