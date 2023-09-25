@@ -612,3 +612,15 @@ https://imgur.com/a/1zY2VSL
 
 - how to reuse `_colorClose` for \_`_fontColorClose`? like reversing
 - how to change color value to white at bound with single ticker?
+
+# 5 MUSIC PLAYER PROJECT
+
+## 5.0 Album PageView
+
+```dart
+// touch lib/screens/music_player_screen.dart
+
+final PageController _pageController = PageController(
+  viewportFraction: 0.8,
+);
+```
