@@ -654,3 +654,20 @@ AnimatedSwitcher (
   ),
 )
 ```
+
+## 5.2 Album Scale
+
+- To render only specific area => use `ValueNotifier` rather than setState
+
+```dart
+final ValueNotifier<double> _scroll = ValueNotifier(0.0);
+..
+ValueListenableBuilder(
+  valueListenable: _scroll,
+  builder: (context, scroll, child) {
+    final difference = (scroll - index).abs();
+    final scale = 1 - (difference * 0.1);
+    return Transform.scale(
+      scale: scale,
+      ..
+```
