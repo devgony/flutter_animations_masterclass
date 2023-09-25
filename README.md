@@ -624,3 +624,33 @@ final PageController _pageController = PageController(
   viewportFraction: 0.8,
 );
 ```
+
+## 5.1 AnimatedSwitcher
+
+- `ValueKey`: inform to Widget it is changed => transition works
+
+```dart
+AnimatedSwitcher (
+  duration: const Duration(milliseconds: 500),
+  child: Container(
+    key: ValueKey(_currentPage),
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage(
+          "assets/covers/${_currentPage + 1}.jpg",
+        ),
+        fit: BoxFit.cover,
+      ),
+    ),
+    child: BackdropFilter(
+      filter: ImageFilter.blur(
+        sigmaX: 20,
+        sigmaY: 20,
+      ),
+      child: Container(
+        color: Colors.black.withOpacity(0.5),
+      ),
+    ),
+  ),
+)
+```
