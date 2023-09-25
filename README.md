@@ -598,3 +598,17 @@ void _whenComplete() {
   });
 }
 ```
+
+## 4.6 Code Challenge
+
+- refactor whenComplete
+- wrap with `min` to prohibit overscaling
+
+### Submit
+
+https://imgur.com/a/1zY2VSL
+
+### Question:
+
+- how to reuse `_colorClose` for \_`_fontColorClose`? like reversing
+- how to change color value to white at bound with single ticker?
