@@ -710,3 +710,62 @@ void _onTap(int imageIndex) {
   );
 }
 ```
+
+## 5.5 ProgressBar
+
+```dart
+class ProgressBar extends CustomPainter {
+  final double progressValue;
+
+  ProgressBar({
+    required this.progressValue,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // track
+
+    final trackPaint = Paint()
+      ..color = Colors.grey.shade300
+      ..style = PaintingStyle.fill;
+
+    final trackRRect = RRect.fromLTRBR(
+      0,
+      0,
+      size.width,
+      size.height,
+      const Radius.circular(10),
+    );
+
+    canvas.drawRRect(trackRRect, trackPaint);
+
+    // progress
+    final progressPaint = Paint()
+      ..color = Colors.grey.shade500
+      ..style = PaintingStyle.fill;
+
+    final progressRRect = RRect.fromLTRBR(
+      0,
+      0,
+      progressValue,
+      size.height,
+      const Radius.circular(10),
+    );
+
+    canvas.drawRRect(progressRRect, progressPaint);
+
+    // thumb
+
+    canvas.drawCircle(
+      Offset(progressValue, size.height / 2),
+      10,
+      progressPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant ProgressBar oldDelegate) {
+    return false;
+  }
+}
+```
