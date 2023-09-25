@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import 'music_player_detail_screen.dart';
+import 'package:flutter_animations_masterclass/screens/music_player_detail_screen.dart';
 
 class MusicPlayerScreen extends StatefulWidget {
   const MusicPlayerScreen({super.key});
@@ -35,19 +34,26 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
     });
   }
 
-  void _onTap(int index) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => MusicPlayerDetailScreen(index: index),
-      ),
-    );
-  }
-
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _onTap(int imageIndex) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return FadeTransition(
+            opacity: animation,
+            child: MusicPlayerDetailScreen(
+              index: imageIndex,
+            ),
+          );
+        },
+      ),
+    );
   }
 
   @override

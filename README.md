@@ -688,3 +688,25 @@ return GestureDetector(
     child: Transform.scale(
     ..
 ```
+
+## 5.4 PageRouteBuilder
+
+- PageRouteBuilder supports transition like FadeTransition, ScaleTransition..
+
+```dart
+void _onTap(int imageIndex) {
+  Navigator.push(
+    context,
+    PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return FadeTransition(
+          opacity: animation,
+          child: MusicPlayerDetailScreen(
+            index: imageIndex,
+          ),
+        );
+      },
+    ),
+  );
+}
+```
