@@ -585,3 +585,16 @@ late final Tween<double> _scale = Tween(
 ..
 final scale = _scale.transform(_position.value.abs() / size.width);
 ```
+
+## 4.5 Cards
+
+- reset animationController + add index => infinite swipe hallucination
+
+```dart
+void _whenComplete() {
+  _position.value = 0;
+  setState(() {
+    _index = _index == 5 ? 1 : _index + 1;
+  });
+}
+```
