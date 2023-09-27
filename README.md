@@ -784,3 +784,4 @@ final progress = size.width * progressValue;
 ## 5.7 Code Challenge
 
 - lecture: render stateless time and title
+- challenge: render stateful time up to animationController

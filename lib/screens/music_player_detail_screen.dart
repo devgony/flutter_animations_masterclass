@@ -20,6 +20,14 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
     duration: const Duration(minutes: 1),
   )..repeat(reverse: true);
 
+  String toTimeString(double value) {
+    final duration = Duration(milliseconds: (value * 60000).toInt());
+    final timeString =
+        '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+
+    return timeString;
+  }
+
   @override
   void dispose() {
     _progressController.dispose();
@@ -70,37 +78,41 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
           ),
           AnimatedBuilder(
             animation: _progressController,
-            builder: (context, child) => CustomPaint(
-              size: Size(size.width - 80, 5),
-              painter: ProgressBar(
-                progressValue: _progressController.value,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Row(
-              children: const [
-                Text(
-                  "00:00",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w600,
+            builder: (context, child) => Column(
+              children: [
+                CustomPaint(
+                  size: Size(size.width - 80, 5),
+                  painter: ProgressBar(
+                    progressValue: _progressController.value,
                   ),
                 ),
-                Spacer(),
-                Text(
-                  "01:00",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w600,
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Row(
+                    children: [
+                      Text(
+                        toTimeString(_progressController.value),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        toTimeString(1 - _progressController.value),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),
