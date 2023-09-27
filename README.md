@@ -769,3 +769,14 @@ class ProgressBar extends CustomPainter {
   }
 }
 ```
+
+## 5.6 Progress Animation
+
+```dart
+late final AnimationController _progressController = AnimationController(
+    vsync: this,
+    duration: const Duration(minutes: 1),
+  )..repeat(reverse: true);
+..
+final progress = size.width * progressValue;
+```
