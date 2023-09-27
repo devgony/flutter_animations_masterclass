@@ -785,3 +785,25 @@ final progress = size.width * progressValue;
 
 - lecture: render stateless time and title
 - challenge: render stateful time up to animationController
+
+## 5.8 Marquee
+
+- A html element scrolling area of text
+
+```dart
+late final Animation<Offset> _marqueeTween = Tween(
+  begin: const Offset(0.1, 0),
+  end: const Offset(-0.6, 0),
+).animate(_marqueeController);
+..
+SlideTransition(
+  position: _marqueeTween,
+  child: const Text(
+    "A Film By Christopher Nolan - Original Motion Picture Soundtrack",
+    maxLines: 1,
+    overflow: TextOverflow.visible,
+    softWrap: false,
+    style: TextStyle(fontSize: 18),
+  ),
+),
+```

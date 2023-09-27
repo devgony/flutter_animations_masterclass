@@ -14,12 +14,7 @@ class MusicPlayerDetailScreen extends StatefulWidget {
 }
 
 class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _progressController = AnimationController(
-    vsync: this,
-    duration: const Duration(minutes: 1),
-  )..repeat(reverse: true);
-
+    with TickerProviderStateMixin {
   String toTimeString(double value) {
     final duration = Duration(milliseconds: (value * 60000).toInt());
     final timeString =
@@ -28,9 +23,27 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
     return timeString;
   }
 
+  late final AnimationController _progressController = AnimationController(
+    vsync: this,
+    duration: const Duration(minutes: 1),
+  )..repeat(reverse: true);
+
+  late final AnimationController _marqueeController = AnimationController(
+    vsync: this,
+    duration: const Duration(
+      seconds: 20,
+    ),
+  )..repeat(reverse: true);
+
+  late final Animation<Offset> _marqueeTween = Tween(
+    begin: const Offset(0.1, 0),
+    end: const Offset(-0.6, 0),
+  ).animate(_marqueeController);
+
   @override
   void dispose() {
     _progressController.dispose();
+    _marqueeController.dispose();
     super.dispose();
   }
 
@@ -129,11 +142,15 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
           const SizedBox(
             height: 5,
           ),
-          const Text(
-            "A Film By Christopher Nolan - Original Motion Picture Soundtrack",
-            maxLines: 1,
-            overflow: TextOverflow.visible,
-            style: TextStyle(fontSize: 18),
+          SlideTransition(
+            position: _marqueeTween,
+            child: const Text(
+              "A Film By Christopher Nolan - Original Motion Picture Soundtrack",
+              maxLines: 1,
+              overflow: TextOverflow.visible,
+              softWrap: false,
+              style: TextStyle(fontSize: 18),
+            ),
           ),
         ],
       ),
