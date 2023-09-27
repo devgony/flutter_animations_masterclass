@@ -780,3 +780,7 @@ late final AnimationController _progressController = AnimationController(
 ..
 final progress = size.width * progressValue;
 ```
+
+## 5.7 Code Challenge
+
+- lecture: render stateless time and title
