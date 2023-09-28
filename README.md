@@ -807,3 +807,31 @@ SlideTransition(
   ),
 ),
 ```
+
+## 5.9 Lottie
+
+```dart
+// mkdir assets/animations
+// touch assets/animations/play-lottie.json
+
+//pubspec.yaml
+assets:
+  - assets/animations/
+```
+
+- AnimatedIcon supports standard icons with animation but few.
+- download lottie json file https://lottiefiles.com/animation/flutter
+
+```dart
+AnimatedIcon(
+  icon: AnimatedIcons.play_pause,
+  progress: _playPauseController,
+  size: 60,
+),
+LottieBuilder.asset(
+  "assets/animations/play-lottie.json",
+  controller: _playPauseController,
+  width: 200,
+  height: 100,
+)
+```

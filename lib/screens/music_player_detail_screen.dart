@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class MusicPlayerDetailScreen extends StatefulWidget {
   final int index;
@@ -15,6 +16,30 @@ class MusicPlayerDetailScreen extends StatefulWidget {
 
 class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
     with TickerProviderStateMixin {
+  late final AnimationController _progressController = AnimationController(
+    vsync: this,
+    duration: const Duration(minutes: 1),
+  );
+
+  late final AnimationController _marqueeController = AnimationController(
+    vsync: this,
+    duration: const Duration(
+      seconds: 20,
+    ),
+  );
+
+  late final AnimationController _playPauseController = AnimationController(
+    vsync: this,
+    duration: const Duration(
+      milliseconds: 500,
+    ),
+  );
+
+  late final Animation<Offset> _marqueeTween = Tween(
+    begin: const Offset(0.1, 0),
+    end: const Offset(-0.6, 0),
+  ).animate(_marqueeController);
+
   String toTimeString(double value) {
     final duration = Duration(milliseconds: (value * 60000).toInt());
     final timeString =
@@ -23,28 +48,23 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
     return timeString;
   }
 
-  late final AnimationController _progressController = AnimationController(
-    vsync: this,
-    duration: const Duration(minutes: 1),
-  )..repeat(reverse: true);
-
-  late final AnimationController _marqueeController = AnimationController(
-    vsync: this,
-    duration: const Duration(
-      seconds: 20,
-    ),
-  )..repeat(reverse: true);
-
-  late final Animation<Offset> _marqueeTween = Tween(
-    begin: const Offset(0.1, 0),
-    end: const Offset(-0.6, 0),
-  ).animate(_marqueeController);
-
   @override
   void dispose() {
     _progressController.dispose();
     _marqueeController.dispose();
     super.dispose();
+  }
+
+  void _onPlayPauseTap() {
+    if (_playPauseController.isCompleted) {
+      _playPauseController.reverse();
+      _progressController.stop();
+      _marqueeController.stop();
+    } else {
+      _playPauseController.forward();
+      _progressController.forward();
+      _marqueeController.forward();
+    }
   }
 
   @override
@@ -130,7 +150,7 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           const Text(
             "Interstellar",
@@ -152,6 +172,28 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
               style: TextStyle(fontSize: 18),
             ),
           ),
+          const SizedBox(
+            height: 30,
+          ),
+          GestureDetector(
+            onTap: _onPlayPauseTap,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedIcon(
+                  icon: AnimatedIcons.play_pause,
+                  progress: _playPauseController,
+                  size: 60,
+                ),
+                LottieBuilder.asset(
+                  "assets/animations/play-lottie.json",
+                  controller: _playPauseController,
+                  width: 200,
+                  height: 100,
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
