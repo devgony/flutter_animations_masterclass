@@ -886,3 +886,23 @@ late final Animation<Offset> _screenOffset = Tween(
   ),
 );
 ```
+
+## 5.13 Menu Slide
+
+- profileSilde
+
+```dart
+late final Animation<Offset> _profileSlide = Tween<Offset>(
+  begin: const Offset(-1, 0),
+  end: Offset.zero,
+).animate(
+  CurvedAnimation(
+    parent: _menuController,
+    curve: Interval(
+      0.4,
+      0.7,
+      curve: _menuCurve,
+    ),
+  ),
+);
+```
