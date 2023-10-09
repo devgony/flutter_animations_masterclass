@@ -835,3 +835,14 @@ LottieBuilder.asset(
   height: 100,
 )
 ```
+
+## 5.10 VolumePainter
+
+- clamp: set fixed min and max
+
+```dart
+_volume.value = _volume.value.clamp(
+  0.0,
+  size.width - 80,
+);
+```
