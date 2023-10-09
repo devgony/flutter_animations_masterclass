@@ -846,3 +846,7 @@ _volume.value = _volume.value.clamp(
   size.width - 80,
 );
 ```
+
+## 5.11 Covered Menu
+
+- prepare first stacked child for menu
