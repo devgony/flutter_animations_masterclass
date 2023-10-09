@@ -906,3 +906,26 @@ late final Animation<Offset> _profileSlide = Tween<Offset>(
   ),
 );
 ```
+
+## 5.14 Menu Animations
+
+- menuAnimations
+
+```dart
+late final List<Animation<Offset>> _menuAnimations = [
+  for (var i = 0; i < _menus.length; i++)
+    Tween<Offset>(
+      begin: const Offset(-1, 0),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _menuController,
+        curve: Interval(
+          0.4 + (0.1 * 1),
+          0.7 + (0.1 * i),
+          curve: _menuCurve,
+        ),
+      ),
+    ),
+];
+```
