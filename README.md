@@ -850,3 +850,39 @@ _volume.value = _volume.value.clamp(
 ## 5.11 Covered Menu
 
 - prepare first stacked child for menu
+
+## 5.12 Interval
+
+- Scale & Slide transition
+
+```dart
+final Curve _menuCurve = Curves.easeInOutCubic;
+
+late final Animation<double> _screenScale = Tween(
+  begin: 1.0,
+  end: 0.7,
+).animate(
+  CurvedAnimation(
+    parent: _menuController,
+    curve: Interval(
+      0.0,
+      0.5,
+      curve: _menuCurve,
+    ),
+  ),
+);
+
+late final Animation<Offset> _screenOffset = Tween(
+  begin: Offset.zero,
+  end: const Offset(0.5, 0),
+).animate(
+  CurvedAnimation(
+    parent: _menuController,
+    curve: Interval(
+      0.5,
+      1.0,
+      curve: _menuCurve,
+    ),
+  ),
+);
+```
