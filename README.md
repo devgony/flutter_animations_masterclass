@@ -1010,3 +1010,19 @@ body: Stack(
   ],
 ),
 ```
+
+## 6.6 State Machine
+
+### custom-button-animation.riv
+
+- active and idle Timeline
+- State machine
+  - Inputs
+    - isActive
+  - Listeners
+    - pointerDown
+      - btn
+        - isActive: true
+    - pointerUp
+      - btn
+        - isActive: false

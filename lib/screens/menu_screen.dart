@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_masterclass/screens/explicit_animations_screen.dart';
 import 'package:flutter_animations_masterclass/screens/implicit_animations_screen.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_balls.dart';
+import 'package:flutter_animations_masterclass/screens/rive_screen_button.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_stars.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_old_man.dart';
 import 'package:flutter_animations_masterclass/screens/swiping_cards_screen.dart';
@@ -101,6 +102,15 @@ class MenuScreen extends StatelessWidget {
                 );
               },
               child: const Text('Rive-balls'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _goToPage(
+                  context,
+                  const RiveScreenButton(),
+                );
+              },
+              child: const Text('Rive-button'),
             ),
           ],
         ),

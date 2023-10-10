@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_masterclass/const.dart';
 import 'package:rive/rive.dart';
 
 class RiveScreenStars extends StatefulWidget {
@@ -14,7 +15,7 @@ class _RiveScreenStarsState extends State<RiveScreenStars> {
   void _onInit(Artboard artboard) {
     _stateMachineController = StateMachineController.fromArtboard(
       artboard,
-      "State Machine 1",
+      stateMachine1,
       onStateChange: (stateMachineName, stateName) {
         print(stateMachineName);
         print(stateName);
@@ -48,7 +49,7 @@ class _RiveScreenStarsState extends State<RiveScreenStars> {
             "assets/animations/stars-animation.riv",
             artboard: "New Artboard",
             onInit: _onInit,
-            stateMachines: const ["State Machine 1"],
+            stateMachines: const [stateMachine1],
           ),
         ),
       ),

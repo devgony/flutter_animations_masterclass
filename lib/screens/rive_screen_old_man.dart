@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_masterclass/const.dart';
 
 import 'package:rive/rive.dart';
 
@@ -15,7 +16,7 @@ class _RiveScreenOldManState extends State<RiveScreenOldMan> {
   void _onInit(Artboard artboard) {
     _stateMachineController = StateMachineController.fromArtboard(
       artboard,
-      "State Machine 1",
+      stateMachine1,
     )!;
 
     artboard.addController(_stateMachineController);
@@ -50,7 +51,7 @@ class _RiveScreenOldManState extends State<RiveScreenOldMan> {
                 "assets/animations/old-man-animation.riv",
                 artboard: "Dwarf Panel",
                 onInit: _onInit,
-                stateMachines: const ["State Machine 1"],
+                stateMachines: const [stateMachine1],
               ),
             ),
             ElevatedButton(
