@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
+
 import 'package:rive/rive.dart';
 
-class RiveScreen extends StatefulWidget {
-  const RiveScreen({super.key});
+class RiveScreenOldMan extends StatefulWidget {
+  const RiveScreenOldMan({super.key});
 
   @override
-  State<RiveScreen> createState() => _RiveScreenState();
+  State<RiveScreenOldMan> createState() => _RiveScreenOldManState();
 }
 
-class _RiveScreenState extends State<RiveScreen> {
+class _RiveScreenOldManState extends State<RiveScreenOldMan> {
   late final StateMachineController _stateMachineController;
 
   void _onInit(Artboard artboard) {
     _stateMachineController = StateMachineController.fromArtboard(
       artboard,
       "State Machine 1",
-      onStateChange: (stateMachineName, stateName) {
-        print(stateMachineName);
-        print(stateName);
-      },
     )!;
+
     artboard.addController(_stateMachineController);
   }
 
   void _togglePanel() {
     final input = _stateMachineController.findInput<bool>("panelActive")!;
+
     input.change(!input.value);
   }
 
   @override
   void dispose() {
     _stateMachineController.dispose();
+
     super.dispose();
   }
 
@@ -41,15 +41,23 @@ class _RiveScreenState extends State<RiveScreen> {
         title: const Text('Rive'),
       ),
       body: Center(
-        child: Container(
-          color: const Color(0xFFFF2ECC),
-          width: double.infinity,
-          child: RiveAnimation.asset(
-            "assets/animations/stars-animation.riv",
-            artboard: "New Artboard",
-            onInit: _onInit,
-            stateMachines: const ["State Machine 1"],
-          ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 500,
+              width: double.infinity,
+              child: RiveAnimation.asset(
+                "assets/animations/old-man-animation.riv",
+                artboard: "Dwarf Panel",
+                onInit: _onInit,
+                stateMachines: const ["State Machine 1"],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: _togglePanel,
+              child: const Text("Go!"),
+            )
+          ],
         ),
       ),
     );

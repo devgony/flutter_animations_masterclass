@@ -949,3 +949,30 @@ child: RiveAnimation.asset(
   stateMachines: const ["State Machine 1"],
 ),
 ```
+
+## 6.3 State Changes
+
+```dart
+child: RiveAnimation.asset(
+  "assets/animations/stars-animation.riv",
+  artboard: "New Artboard",
+  onInit: _onInit,
+  stateMachines: const ["State Machine 1"],
+),
+```
+
+- can get state on action
+
+```dart
+void _onInit(Artboard artboard) {
+  _stateMachineController = StateMachineController.fromArtboard(
+    artboard,
+    "State Machine 1",
+    onStateChange: (stateMachineName, stateName) {
+      print(stateMachineName);
+      print(stateName);
+    },
+  )!;
+  artboard.addController(_stateMachineController);
+}
+```
