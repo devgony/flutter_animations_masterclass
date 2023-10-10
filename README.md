@@ -976,3 +976,10 @@ void _onInit(Artboard artboard) {
   artboard.addController(_stateMachineController);
 }
 ```
+
+## 6.4 Custom Animation
+
+- custom animation by Rive editor
+- State machine
+- Timeline: set of state machines
+- Keyframe: A point of animation
