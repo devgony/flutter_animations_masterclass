@@ -983,3 +983,30 @@ void _onInit(Artboard artboard) {
 - State machine
 - Timeline: set of state machines
 - Keyframe: A point of animation
+
+## 6.5 Animation Blur
+
+```dart
+body: Stack(
+  children: [
+    const RiveAnimation.asset(
+      "assets/animations/balls-animation.riv",
+      fit: BoxFit.cover,
+    ),
+    Positioned.fill(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+        child: const Center(
+          child: Text(
+            "Welcome to AI App",
+            style: TextStyle(
+              fontSize: 28,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    ),
+  ],
+),
+```
