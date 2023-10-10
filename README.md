@@ -929,3 +929,23 @@ late final List<Animation<Offset>> _menuAnimations = [
     ),
 ];
 ```
+
+## 6.1 Importing Animations
+
+```yaml
+dependencies:
+  rive: ^0.11.4
+```
+
+- download riv file to assets/animations
+
+```dart
+// touch lib/screens/rive_screen.dart
+..
+child: RiveAnimation.asset(
+  "assets/animations/old-man-animation.riv",
+  artboard: "Dwarf Panel",
+  onInit: _onInit,
+  stateMachines: const ["State Machine 1"],
+),
+```
