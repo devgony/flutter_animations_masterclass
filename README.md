@@ -1079,3 +1079,18 @@ itemBuilder: (context, index) => OpenContainer(
 ```dart
 touch lib/screens/shared_axis_screen.dart
 ```
+
+## 7.3 Fade Through
+
+```dart
+// touch lib/screens/fade_through_screen.dart
+
+body: PageTransitionSwitcher(
+  transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
+      FadeThroughTransition(
+    animation: primaryAnimation,
+    secondaryAnimation: secondaryAnimation,
+    child: child,
+  ),
+  ..
+```

@@ -10,6 +10,7 @@ import 'package:flutter_animations_masterclass/screens/swiping_cards_screen.dart
 
 import 'apple_watch_screen.dart';
 import 'container_transform_screen.dart';
+import 'fade_through_screen.dart';
 import 'music_player_screen.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -131,6 +132,15 @@ class MenuScreen extends StatelessWidget {
                 );
               },
               child: const Text('Shared Axis'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _goToPage(
+                  context,
+                  const FadeThroughScreen(),
+                );
+              },
+              child: const Text('Fade Through'),
             ),
           ],
         ),
