@@ -1162,3 +1162,25 @@ Widget
 ## 8.3 Credit Cards
 
 - construct base card widgets to adjust animation
+
+## 8.4 AnimateList
+
+- List.animate
+
+```dart
+children: [
+  const CreditCard(bgColor: Colors.purple),
+  const CreditCard(bgColor: Colors.black),
+  const CreditCard(bgColor: Colors.blue),
+]
+    .animate(
+      interval: 500.milliseconds,
+    )
+    .fadeIn(
+      begin: 0,
+    )
+    .slideX(
+      begin: -1,
+      end: 0,
+    ),
+```
