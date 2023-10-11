@@ -1133,3 +1133,28 @@ child: Animate(
   child: ..,
 ),
 ```
+
+## 8.2 Animate Syntax
+
+- chaining method by extension
+
+```dart
+Widget
+.animate()
+.fadeIn(
+  begin: 0,
+  duration: 5.seconds,
+)
+.scale(
+  alignment: Alignment.center,
+  begin: Offset.zero,
+  duration: 5.seconds,
+  end: const Offset(1, 1),
+)
+.then(delay: 5.seconds)
+.slideX(
+  begin: 0,
+  end: -10,
+  duration: 2.seconds,
+),
+```
