@@ -1094,3 +1094,17 @@ body: PageTransitionSwitcher(
   ),
   ..
 ```
+
+# 8 WALLET PROJECT
+
+## 8.0 Introduction
+
+- flutter_animate by gsiknner
+  - https://flutter.gskinner.com/wonderous/
+  - https://flutter.gskinner.com/flokk/
+  - https://flutter.gskinner.com/vignettes/
+
+```yaml
+dependencies:
+  flutter_animate: 4.1.1+1
+```
