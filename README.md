@@ -1219,3 +1219,33 @@ return AbsorbPointer(
 - Hero with index
   - texts traveling between Scaffold have overflow bug => wrap with Material
 - CardDetail should be `isExpanded: false` => absorb
+
+## 8.8 Transactions Animation
+
+- Animate interval
+  - hero should not be in interval => separate list
+
+```dart
+Hero(
+  tag: "$index",
+  child: CreditCard(
+    index: index,
+    isExpanded: true,
+  ),
+),
+...[
+  for (var _ in [1, 1, 1, 1, 1])
+    ..
+  ]
+    .animate(
+      interval: 500.milliseconds,
+    )
+    .fadeIn(
+      begin: 0,
+    )
+    .flipV(
+      begin: -1,
+      end: 0,
+      curve: Curves.bounceOut,
+    )
+```
