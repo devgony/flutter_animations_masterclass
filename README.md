@@ -1212,3 +1212,10 @@ return AbsorbPointer(
   child: GestureDetector(
     ..
 ```
+
+## 8.7 Credit Card Animation
+
+- fullScreenDialog on push
+- Hero with index
+  - texts traveling between Scaffold have overflow bug => wrap with Material
+- CardDetail should be `isExpanded: false` => absorb
