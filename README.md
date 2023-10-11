@@ -1249,3 +1249,8 @@ Hero(
       curve: Curves.bounceOut,
     )
 ```
+
+## 8.9 Conclusions
+
+- more functions: https://pub.dev/documentation/flutter_animate/latest/
+  - custom effect, toggle, swap, callback, access to controller
