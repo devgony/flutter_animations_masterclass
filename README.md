@@ -1184,3 +1184,20 @@ children: [
       end: 0,
     ),
 ```
+
+## 8.5 Wallet Animation
+
+- onClick: expand
+- onVerticalDragEnd: shrink
+- .animate.target is animationController.value
+
+```dart
+CreditCard(bgColor: Colors.purple)
+  .animate(
+    target: _isExpanded ? 0 : 1,
+    delay: 1.5.seconds,
+  )
+  .flipV(
+    end: 0.1,
+  ),
+```
