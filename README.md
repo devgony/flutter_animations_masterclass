@@ -1158,3 +1158,7 @@ Widget
   duration: 2.seconds,
 ),
 ```
+
+## 8.3 Credit Cards
+
+- construct base card widgets to adjust animation
