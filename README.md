@@ -1065,3 +1065,17 @@ itemBuilder: (context, index) => OpenContainer(
       DetailScreen(image: (index % 5) + 1),
 ),
 ```
+
+## 7.2 Shared Axis
+
+- PageTransitionSwitcher
+- transitionBuilder gives primaryAnimation, secondaryAnimation
+- SharedAxisTransition
+  - animation: drives the [child]'s entrance and exit.
+  - secondaryAnimation: transitions [child] when new content is pushed on top of it.
+  - SharedAxisTransitionType: horizontal, vertical, scaled
+- ValueKey: identify whole widget is changed
+
+```dart
+touch lib/screens/shared_axis_screen.dart
+```

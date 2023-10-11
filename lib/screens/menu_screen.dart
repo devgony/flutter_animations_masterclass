@@ -5,6 +5,7 @@ import 'package:flutter_animations_masterclass/screens/rive_screen_balls.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_button.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_stars.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_old_man.dart';
+import 'package:flutter_animations_masterclass/screens/shared_axis_screen.dart';
 import 'package:flutter_animations_masterclass/screens/swiping_cards_screen.dart';
 
 import 'apple_watch_screen.dart';
@@ -121,6 +122,15 @@ class MenuScreen extends StatelessWidget {
                 );
               },
               child: const Text('Container Transform'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _goToPage(
+                  context,
+                  const SharedAxisScreen(),
+                );
+              },
+              child: const Text('Shared Axis'),
             ),
           ],
         ),
