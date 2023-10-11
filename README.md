@@ -930,6 +930,8 @@ late final List<Animation<Offset>> _menuAnimations = [
 ];
 ```
 
+# 6 RIVE
+
 ## 6.1 Importing Animations
 
 ```yaml
@@ -1026,3 +1028,14 @@ body: Stack(
     - pointerUp
       - btn
         - isActive: false
+
+# 7 MATERIAL MOTION
+
+## 7.0 Introduction
+
+- animation package by flutte team for material design
+
+```yaml
+dependencies:
+  animations: 2.0.7
+```
