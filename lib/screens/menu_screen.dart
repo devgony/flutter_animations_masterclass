@@ -8,6 +8,7 @@ import 'package:flutter_animations_masterclass/screens/rive_screen_old_man.dart'
 import 'package:flutter_animations_masterclass/screens/swiping_cards_screen.dart';
 
 import 'apple_watch_screen.dart';
+import 'container_transform_screen.dart';
 import 'music_player_screen.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -111,6 +112,15 @@ class MenuScreen extends StatelessWidget {
                 );
               },
               child: const Text('Rive-button'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _goToPage(
+                  context,
+                  const ContainerTransformScreen(),
+                );
+              },
+              child: const Text('Container Transform'),
             ),
           ],
         ),

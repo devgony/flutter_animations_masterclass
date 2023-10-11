@@ -1039,3 +1039,29 @@ body: Stack(
 dependencies:
   animations: 2.0.7
 ```
+
+## 7.1 Container Transform
+
+- OpenContainer: closedBuilder and openBuilder
+
+```dart
+// touch lib/screens/container_transform_screen.dart
+itemBuilder: (context, index) => OpenContainer(
+  closedElevation: 0,
+  openElevation: 0,
+  closedBuilder: (context, action) => Column(
+    children: [
+      Image.asset("assets/covers/${(index % 5) + 1}.jpg"),
+      const Text('Dune Soundtrack'),
+      const Text(
+        'Hans Zimmer',
+        style: TextStyle(
+          fontSize: 14,
+        ),
+      )
+    ],
+  ),
+  openBuilder: (context, action) =>
+      DetailScreen(image: (index % 5) + 1),
+),
+```
