@@ -7,6 +7,7 @@ import 'package:flutter_animations_masterclass/screens/rive_screen_stars.dart';
 import 'package:flutter_animations_masterclass/screens/rive_screen_old_man.dart';
 import 'package:flutter_animations_masterclass/screens/shared_axis_screen.dart';
 import 'package:flutter_animations_masterclass/screens/swiping_cards_screen.dart';
+import 'package:flutter_animations_masterclass/screens/wallet_screen.dart';
 
 import 'apple_watch_screen.dart';
 import 'container_transform_screen.dart';
@@ -141,6 +142,15 @@ class MenuScreen extends StatelessWidget {
                 );
               },
               child: const Text('Fade Through'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _goToPage(
+                  context,
+                  const WalletScreen(),
+                );
+              },
+              child: const Text('Wallet Screen'),
             ),
           ],
         ),

@@ -1108,3 +1108,28 @@ body: PageTransitionSwitcher(
 dependencies:
   flutter_animate: 4.1.1+1
 ```
+
+## 8.1 Animate Widget
+
+- basic effects by `Animate` widget
+
+```dart
+// touch lib/screens/wallet_screen.dart
+child: Animate(
+  effects: [
+    FadeEffect(
+      begin: 0,
+      end: 1,
+      duration: 5.seconds,
+      curve: Curves.easeInCubic,
+    ),
+    ScaleEffect(
+      alignment: Alignment.center,
+      begin: Offset.zero,
+      end: const Offset(1, 1),
+      duration: 5.seconds,
+    )
+  ],
+  child: ..,
+),
+```
