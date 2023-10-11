@@ -1201,3 +1201,14 @@ CreditCard(bgColor: Colors.purple)
     end: 0.1,
   ),
 ```
+
+## 8.6 AbsorbPointer
+
+- AbsortbPointer can ignore gesture on nested gestures
+
+```dart
+return AbsorbPointer(
+  absorbing: !isExpanded,
+  child: GestureDetector(
+    ..
+```
